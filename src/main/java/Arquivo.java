@@ -13,12 +13,15 @@ public class Arquivo {
         PrintWriter gravaArq = new PrintWriter(arq);
 
         gravaArq.printf("AUTORES: %n");
-        gravaArq.printf(StaticVariables.autors);
-        gravaArq.printf(";%n");
+        gravaArq.printf(StaticVariables.autors + ";");
+        gravaArq.printf("%n");
         gravaArq.printf("REFERENCIAS: %n");
         gravaArq.printf(StaticVariables.references);
-        gravaArq.printf(";%n");
+        gravaArq.printf("%n");
 
+        for(Termo t: StaticVariables.termosEstatico){
+            gravaArq.printf(t.getName() + ", " + t.getQty() + ";" + "%n");
+        }
 
         arq.close();
 

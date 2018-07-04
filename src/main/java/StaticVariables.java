@@ -8,4 +8,5 @@ public class StaticVariables {
     public static String quantAutors;
     public static String references = "";
     public static int quantReferences = 1;
+    public static ArrayList<Termo> termosEstatico = null;
 }

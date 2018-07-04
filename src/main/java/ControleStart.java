@@ -1,16 +1,19 @@
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.uttesh.exude.exception.InvalidDataException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +29,10 @@ public class ControleStart {
     @FXML
     TableView tvTermos;
     @FXML
+    TableColumn tcName;
+    @FXML
+    TableColumn tcQty;
+    @FXML
     JFXButton btSearch;
     @FXML
     JFXButton btInformation;
@@ -39,6 +46,7 @@ public class ControleStart {
     String path = "";
     PDFManager pdfManager = new PDFManager();
     ArrayList<String> text;
+    ObservableList list;
 
     public void setBtSearch() throws IOException, InvalidDataException {
         //reseta o contador de referencias
@@ -53,7 +61,7 @@ public class ControleStart {
         pdfManager.setFilePath(path);
         text = pdfManager.ToText();
 
-        /*//find autors
+        //find autors
         pdfManager.getAuthor(text);
         tfAutor.setText(StaticVariables.autors);
         lbAutors.setText(StaticVariables.quantAutors);
@@ -61,11 +69,14 @@ public class ControleStart {
         //find references
         pdfManager.getReferences(text);
         taReferencias.setText(StaticVariables.references);
-        lbReferences.setText(Integer.toString(StaticVariables.quantReferences));*/
+        lbReferences.setText(Integer.toString(StaticVariables.quantReferences));
 
         //find most common words
-        pdfManager.getCommonWords(text);
-
+        StaticVariables.termosEstatico = pdfManager.getCommonWords(text);
+        list = FXCollections.observableList(StaticVariables.termosEstatico);
+        tcName.setCellValueFactory( new PropertyValueFactory<>("name"));
+        tcQty.setCellValueFactory( new PropertyValueFactory<>("qty"));
+        tvTermos.setItems(list);
 
     }
 
