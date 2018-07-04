@@ -90,7 +90,7 @@ public class ControleStart {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("information.fxml"));
+        loader.setLocation(getClass().getResource("pdfinfo.fxml"));
         Parent root = null;
         try {
             root = loader.load();
