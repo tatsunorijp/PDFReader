@@ -63,6 +63,12 @@ public class ControleStart {
         lbReferences.setText(Integer.toString(StaticVariables.quantReferences));
     }
 
+    public void setBtExportarArquivos() throws IOException {
+        if (tfArquivo.getText() != null) {
+            Arquivo.exportarDados(tfArquivo.getText());
+        }
+    }
+
     public void setBtInformations(){
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);

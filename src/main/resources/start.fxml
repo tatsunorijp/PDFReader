@@ -30,6 +30,7 @@
                         <Font size="13.0" />
                     </font>
                 </Label>
+            <JFXButton fx:id="btExportarArquivos" layoutX="825.0" layoutY="14.0" onAction="#setBtExportarArquivos" text="Exportar Arquivos" textFill="WHITE" />
             </children>
          <effect>
             <DropShadow />
