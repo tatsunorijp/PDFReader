@@ -1,5 +1,6 @@
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import com.uttesh.exude.exception.InvalidDataException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,7 +40,7 @@ public class ControleStart {
     PDFManager pdfManager = new PDFManager();
     ArrayList<String> text;
 
-    public void setBtSearch() throws IOException {
+    public void setBtSearch() throws IOException, InvalidDataException {
         //reseta o contador de referencias
         StaticVariables.quantReferences = 1;
         StaticVariables.references = "";
@@ -52,7 +53,7 @@ public class ControleStart {
         pdfManager.setFilePath(path);
         text = pdfManager.ToText();
 
-        //find autors
+        /*//find autors
         pdfManager.getAuthor(text);
         tfAutor.setText(StaticVariables.autors);
         lbAutors.setText(StaticVariables.quantAutors);
@@ -60,7 +61,12 @@ public class ControleStart {
         //find references
         pdfManager.getReferences(text);
         taReferencias.setText(StaticVariables.references);
-        lbReferences.setText(Integer.toString(StaticVariables.quantReferences));
+        lbReferences.setText(Integer.toString(StaticVariables.quantReferences));*/
+
+        //find most common words
+        pdfManager.getCommonWords(text);
+
+
     }
 
     public void setBtExportarArquivos() throws IOException {
